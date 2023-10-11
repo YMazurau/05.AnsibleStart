@@ -1,0 +1,9 @@
+- name: Htop install remote machine
+  hosts: all_workers
+  gather_facts: False
+  become: yes
+  tasks:
+    - name: htop install
+      ansible.builtin.package:
+        name: htop
+        state: present

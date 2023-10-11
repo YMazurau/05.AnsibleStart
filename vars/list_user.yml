@@ -1,0 +1,13 @@
+addgroup:
+  - name: team1
+  - name: team2
+
+
+
+addusers:
+  - name: user1
+    group: team1
+    password: qwerty1
+  - name: user2
+    group: team2
+    password: qwerty2

@@ -1,5 +1,6 @@
 05.Homework Ansible start
 
+Git repositories [https://github.com/YMazurau/05.AnsibleStart]
 
 ***************************************************************************************************
 ssh-copy-id username@remote_host     копирование ключа на удаленный сервер
@@ -23,7 +24,7 @@ ansible -i inv.yaml -m authorized_key -a "key=\"{{lookup('file','~/.ssh/id_rsa.p
 3. Напишите Ansible playbook, который выводит "Привет, Ansible!" на консоль.
 4. Запустите playbook с помощью команды ansible-playbook и убедитесь, что она успешно выполнена.
 5. Задокументируйте процесс установки и шаги, которые вы предприняли для запуска playbook.
-============================================================================================
+=======================================================================================
 
 #  Install Ansible on your local machine or a virtual environment
 
@@ -106,3 +107,57 @@ ansible -i inv.yaml -m ping all_workers --ask-vault-pass
 
 nano hello_loc.yml
 ansible-playbook hello_loc.yml
+
+
+
+### Homework Assignment 2: Managing Remote Hosts
+1. Set up a virtual machine (or use an existing one in IT-ACADEMY DC) to act as your remote target.
+2. Ensure SSH access to the remote machine from your local machine.
+3. Write an Ansible playbook to install a basic package (e.g., vim or htop) on the remote host.
+4. Use inventory files to manage the connection details for the remote host.
+5. Execute the playbook and verify that the package is installed on the remote host.
+
+### Домашнее задание 2: Управление удаленными хостами
+1. Настройте виртуальную машину (или используйте существующую в IT-ACADEMY DC) в качестве удаленной цели.
+2. Обеспечьте SSH-доступ к удаленному компьютеру с вашего локального компьютера.
+3. Напишите Ansible playbook для установки базового пакета (например, vim или htop) на удаленный хост.
+4. Используйте файлы инвентаризации для управления деталями подключения к удаленному хосту.
+5. Запустите playbook и убедитесь, что пакет установлен на удаленном хосте.
+
+
+** 3. Write an Ansible playbook to install a basic package (e.g., vim or htop) on the remote host. **
+nano htop_install.yml
+ansible-playbook -i inv.yaml htop_install.yml -u root --ask-vault-pass
+#Check
+ssh root@192.168.202.20
+htop
+exit
+ssh root@192.168.202.19
+htop
+exit
+
+
+### Homework Assignment 3: Managing Users and Groups
+1. Create a playbook to manage users and groups on a remote host.
+2. Define tasks to create a new user, assign the user to a specific group, and set a password through the list
+3. Parameterize the playbook to allow dynamic user and group names.
+4. Execute the playbook and verify that the user and group configurations are applied.
+5. Your ansible project add to folder 05.Ansible.start, create README.md with short report inside and prepare PR
+
+### Домашнее задание 3: Управление пользователями и группами
+1. Создайте playbook для управления пользователями и группами на удаленном хосте.
+2. Определите задачи по созданию нового пользователя, назначьте пользователя определенной группе и установите пароль.
+3. Настройте playbook таким образом, чтобы разрешить динамические имена пользователей и групп.
+4. Запустите playbook и убедитесь, что применены пользовательские и групповые конфигурации.
+5. Ваш проект ansible добавьте в папку 05.Ansible.start, создайте README.md с кратким отчетом внутри и подготовкой ПРОЕКТА
+
+mkdir vars
+nano list_user.yml
+nano add_user.yml
+ansible-playbook -i inv.yaml add_users.yml -u root --ask-vault-pass
+ssh root@192.168.202.20
+cat /etc/group | grep team
+exit
+ssh root@192.168.202.20
+cat /etc/group | grep team
+exi
